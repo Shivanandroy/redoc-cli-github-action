@@ -17,7 +17,7 @@ jobs:
       - name: redoc-cli test
         uses: ./ # Uses an action in the root directory
         with:
-          args: 'bundle test/petstore.yml -o docs/petstore.html'
+          args: 'bundle test/petstore.yml -o ./docs/petstore.html'
 
       - name: check result
         run: |
