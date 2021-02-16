@@ -17,33 +17,19 @@ jobs:
       - name: redoc-cli test
         uses: ./ # Uses an action in the root directory
         with:
-          args: 'bundle test/petstore.yml -o ./docs/petstore.html'
+          args: 'bundle test/petstore.yml -o public/petstore.html'
 
       - name: check result
         run: |
           ls -al
-          test -f ./docs/petstore.html || (echo "Missing petstore.html from previous step." && exit 1)
+          test -f public/petstore.html || (echo "Missing petstore.html from previous step." && exit 1)
+          
       - name: Checkout
         uses: actions/checkout@v2
-        
-      - name: Gen dummy page
-        run: |
-          mkdir public
-          cat > ./docs/petstore.html <<EOL
-          <!doctype html>
-          <html>
-            <head>
-              <title>GitHub Pages deployed!</title>
-            </head>
-            <body>
-              <p>GitHub Pages with <strong>${{ github.sha }}</strong> commit ID has been deployed through <a href="https://github.com/marketplace/actions/github-pages">GitHub Pages action</a> successfully.</p>
-            </body>
-          </html>
-          EOL
-      -
-        name: Deploy to GitHub Pages
+          
+      - name: Deploy to GitHub Pages
         if: success()
-        uses: crazy-max/ghaction-github-pages@v2
+        uses: Shivanandroy/redoc-cli-github-action @v2
         with:
           target_branch: gh-pages
           build_dir: public
