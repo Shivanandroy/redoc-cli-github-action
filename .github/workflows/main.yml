@@ -17,12 +17,12 @@ jobs:
       - name: redoc-cli test
         uses: ./ # Uses an action in the root directory
         with:
-          args: 'bundle test/petstore.yml -o public/petstore.html'
+          args: 'bundle test/petstore.yml -o public/index.html'
 
       - name: check result
         run: |
           ls -al
-          test -f public/petstore.html || (echo "Missing petstore.html from previous step." && exit 1)
+          test -f public/index.html || (echo "Missing petstore.html from previous step." && exit 1)
           
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
