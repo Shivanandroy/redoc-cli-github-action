@@ -29,7 +29,7 @@ jobs:
           
       - name: Deploy to GitHub Pages
         if: success()
-        uses: Shivanandroy/redoc-cli-github-action @v2
+        uses: Shivanandroy/redoc-cli-github-action@v2
         with:
           target_branch: gh-pages
           build_dir: public
