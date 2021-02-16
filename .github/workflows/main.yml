@@ -24,17 +24,11 @@ jobs:
           ls -al
           test -f public/petstore.html || (echo "Missing petstore.html from previous step." && exit 1)
           
-      - name: Checkout
-        uses: actions/checkout@v2
-          
-      - name: Deploy to GitHub Pages
-        if: success()
-        uses: Shivanandroy/redoc-cli-github-action@v2
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          target_branch: gh-pages
-          build_dir: public
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
 
   test_job_2:
     runs-on: ubuntu-latest
