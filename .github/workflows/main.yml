@@ -22,7 +22,7 @@ jobs:
       - name: check result
         run: |
           ls -al
-          test -f petstore.html || (echo "Missing petstore.html from previous step." && exit 1)
+          test -f ./docs/petstore.html || (echo "Missing petstore.html from previous step." && exit 1)
 
   test_job_2:
     runs-on: ubuntu-latest
